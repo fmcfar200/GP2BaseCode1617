@@ -19,6 +19,13 @@ public:
 
 	//Basically runs our game
 	void run();
+
+	void createWindow(const string& windowTitle, const unsigned int width, const unsigned int height,
+		const unsigned int windowFlags = 0);
+
+	void OnQuit();
+
+
 protected:
 	ProgramOptions m_Options;
 
@@ -26,7 +33,8 @@ protected:
 	unsigned int m_WindowHeight;
 	unsigned int m_WindowCreationFlags;
 	string m_WindowTitle;
-
+	SDL_Window * m_pWindow;
 	void parseConfig(int args,char * arg[]);
+	bool m_vIsRunning;
 };
 #endif
