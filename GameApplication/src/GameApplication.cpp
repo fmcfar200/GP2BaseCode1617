@@ -9,11 +9,12 @@ GameApplication::GameApplication()
 	CREATELOG("log.txt");
 	m_bIsActive=false;
 	m_bIsRunning=false;
+  m_WindowTitle="Game";
 }
 
 GameApplication::~GameApplication()
 {
-  
+
 }
 
 void GameApplication::createWindow(const string& windowTitle,const unsigned int width, const unsigned int height, const unsigned int windowFlags)
@@ -43,7 +44,7 @@ void GameApplication::parseConfig(int args,char * arg[])
   LOG(INFO,"Settings Parsed\n%s",ss.str().c_str());
   ss.str( std::string());
   ss.clear();
-  
+
 	//parse command line arguments into keyvalue pairs, this should
 	//overide options in config files
   CommandLineParser commandLineParser=CommandLineParser(args,arg);
@@ -73,8 +74,8 @@ bool GameApplication::init(int args,char * arg[])
 
 	m_WindowWidth=m_Options.getOptionAsInt("WindowWidth");
 	m_WindowHeight=m_Options.getOptionAsInt("WindowHeight");
-
-	createWindow(m_Options.getOption("WindowTitle"),m_WindowWidth,m_WindowHeight,m_WindowCreationFlags);
+  m_WindowTitle=m_Options.getOption("WindowTitle");
+	createWindow(m_WindowTitle,m_WindowWidth,m_WindowHeight,m_WindowCreationFlags);
 
 
 	m_bIsActive=true;
@@ -162,9 +163,6 @@ void GameApplication::run()
 				}
 				}
 			}
-		}
-		//messages have been handled now do our work for the game
-		if (m_bIsActive && m_bIsRunning) {
 		}
 	}
 }

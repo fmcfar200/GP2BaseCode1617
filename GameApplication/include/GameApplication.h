@@ -41,6 +41,7 @@ protected:
 	unsigned int m_WindowWidth;
 	unsigned int m_WindowHeight;
 	unsigned int m_WindowCreationFlags;
+	string m_WindowTitle;
 
 	ProgramOptions m_Options;
 
