@@ -35,16 +35,16 @@ void GameApplication::parseConfig(int args,char * arg[])
   ss.clear();
 }
 
-void GameApplication::createWindow(const string& windowTitle, const unsigned int width, const unsigned int height,
-	const unsigned int windowFlags = 0)
-{
-	m_pWindow = SDL_CreateWindow(m_WindowTitle.c_str(),
-		0,
-		0,
-		width,
-		height,
-		windowFlags);
-}
+//void GameApplication::createWindow(const string& windowTitle, const unsigned int width, const unsigned int height,
+	//const unsigned int windowFlags = 0)
+//{
+	//m_pWindow = SDL_CreateWindow(m_WindowTitle.c_str(),
+		//0,
+		//0,
+		//width,
+		//height,
+		//windowFlags);
+//}
 
 
 bool GameApplication::init(int args,char * arg[])
@@ -63,7 +63,7 @@ bool GameApplication::init(int args,char * arg[])
 	m_WindowTitle = m_Options.getOption("WindowTitle");
 
 	
-	createWindow ()
+	
 	return true;
 }
 
