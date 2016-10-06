@@ -76,6 +76,7 @@ bool GameApplication::init(int args,char * arg[])
 	m_WindowHeight=m_Options.getOptionAsInt("WindowHeight");
   m_WindowTitle=m_Options.getOption("WindowTitle");
 	createWindow(m_WindowTitle,m_WindowWidth,m_WindowHeight,m_WindowCreationFlags);
+	initGraphics();
 
 
 	m_bIsActive=true;
@@ -86,6 +87,7 @@ void GameApplication::OnQuit()
 {
 	//set our boolean which controls the loop to false
 	m_bIsRunning = false;
+	SDL_GL_DeleteContext(m_GLcontext);
 	SDL_DestroyWindow(m_pWindow);
 	SDL_Quit();
 	CLOSELOG();
