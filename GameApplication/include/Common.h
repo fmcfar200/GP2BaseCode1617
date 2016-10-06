@@ -19,8 +19,14 @@
 //Name space std, so we don't need to do std::vector
 using namespace std;
 
+//OGL
+#include <GL/glew.h>
+#include <SDL_opengl.h>
+
 //SDL
 #include <SDL.h>
+
+
 
 #include "../Utils/include/Utils.h"
 
