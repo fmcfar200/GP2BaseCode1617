@@ -5,6 +5,9 @@ struct Vertex
 	float x, y, z;
 };
 
+const std::string ASSET_PATH = "assets";
+const std::string SHADER_PATH = "/shaders";
+
 MyGame::MyGame()
 {
 	m_VBO = 0;
@@ -15,6 +18,7 @@ MyGame::~MyGame()
 {
 	
 }
+
 
 void MyGame::initScene()
 {
@@ -35,10 +39,7 @@ void MyGame::initScene()
 
 }
 
-void GameApplication::initScene()
-{
 
-}
 
 void MyGame::destroyScene()
 {
