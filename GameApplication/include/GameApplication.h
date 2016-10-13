@@ -42,10 +42,6 @@ public:
 	
 	void setViewport(int width, int height);
 
-	virtual void initScene();
-	virtual void destroyScene();
-
-
 protected:
 	//SDL Windows
 	SDL_Window * m_pWindow;

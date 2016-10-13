@@ -8,17 +8,5 @@ class MyGame:public GameApplication
 public:
 	MyGame();
 	~MyGame();
-
-	void initScene();
-	void destroyScene();
-	void render();
-	void update();
-
-private:
-
-	GLuint m_VBO;
-	GLuint m_VAO;
-
-
 };
 #endif
