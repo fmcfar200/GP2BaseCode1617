@@ -16,6 +16,8 @@
 #include <ctime>
 #include <cstdarg>
 
+
+
 //Name space std, so we don't need to do std::vector
 using namespace std;
 
@@ -25,6 +27,8 @@ using namespace std;
 #include <SDL.h>
 #include <SDL_opengl.h>
 
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #define GLM_FORCE_RADIANS
 //maths headers
 #include <glm/glm.hpp>

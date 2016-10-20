@@ -6,6 +6,8 @@ struct Vertex{
 
 const std::string ASSET_PATH = "assets";
 const std::string SHADER_PATH = "/shaders";
+const std::string TEXTURE_PATH = "/textures";
+
 
 MyGame::MyGame()
 {
@@ -54,6 +56,7 @@ void MyGame::initScene()
     {-0.5f, -0.5f, 0.0f},
       {0.5f, -0.5f, 0.0f},
     {0.0f,  0.5f, 0.0f}
+
   };
 
   glGenBuffers(1, &m_VBO);
@@ -84,6 +87,18 @@ void MyGame::initScene()
 
   glDeleteShader(vertexShaderProgram);
 	glDeleteShader(fragmentShaderProgram);
+
+	string texturePath = ASSET_PATH + TEXTURE_PATH + "/texture.png";
+	m_Texture = loadTextureFromFile(texturePath);
+	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	glGenSamplers(1, &m_Sampler);
+	glSamplerParameteri(m_Sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glSamplerParameteri(m_Sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glSamplerParameteri(m_Sampler, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glSamplerParameteri(m_Sampler, GL_TEXTURE_WRAP_T, GL_CLAMP);
+
 }
 
 void MyGame::destroyScene()
@@ -92,4 +107,9 @@ void MyGame::destroyScene()
   glDeleteProgram(m_ShaderProgram);
   glDeleteVertexArrays(1,&m_VAO);
   glDeleteBuffers(1,&m_VBO);
+
+  glDeleteTextures(1, &m_Texture);
+  glDeleteSamplers(1, &m_Sampler);
+
+  
 }
