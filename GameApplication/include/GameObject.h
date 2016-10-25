@@ -19,7 +19,7 @@ public:
 
 	void loadTexture(const string& filename);
 	void loadShaders(const string& vsFilename, const string& fsFilename);
-	void copyVertexData(Vertex *pVerts, int numberOfvertcies);
+	void copyVertexData(Vertex *pVerts, int numberOfVertcies);
 
 private:
 	GLuint m_VBO;
