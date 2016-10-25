@@ -2,6 +2,8 @@
 
 struct Vertex{
   float x,y,z;
+  float r, g, b, a;
+  float tu, tv;
 };
 
 const std::string ASSET_PATH = "assets";
@@ -45,7 +47,8 @@ void MyGame::render()
     glUniformMatrix4fv(MVPLocation, 1, GL_FALSE, glm::value_ptr(MVP));
   }
 
-  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDrawArrays(GL_TRIANGLES, 0, 6 );
+
 }
 
 void MyGame::initScene()
@@ -53,12 +56,12 @@ void MyGame::initScene()
   GameApplication::initScene();
 
   Vertex verts[] = {
-	{-0.5f, -0.5f, 0.0f},
-	  {0.5f, -0.5f, 0.0f},
-	{-0.5f,  0.5f, 0.0f},
-	{0.5f,0.5f,0.0f},
-	{-0.5f,0.5f,0.0f},
-	{0.5f,-0.5f,0.0f}
+	{-0.5f, -0.5f, 0.0f,1.0f,1.0f,1.0f,1.0f,0.0f,3.0f},
+	  {0.5f, -0.5f, 0.0f,1.0f,1.0f,1.0f,1.0f,3.0f,3.0f },
+	{-0.5f,  0.5f, 0.0f,1.0f,1.0f,1.0f,1.0f,0.0f,0.0f },
+	{0.5f,0.5f,0.0f,1.0f,1.0f,1.0f,1.0f,0.0f,0.0f },
+	{-0.5f,0.5f,0.0f,1.0f,1.0f,1.0f,1.0f,3.0f,3.0f },
+	{0.5f,-0.5f,0.0f,1.0f,1.0f,1.0f,1.0f,0.0f,3.0f }
 
   };
 
@@ -74,7 +77,10 @@ void MyGame::initScene()
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 3, GL_FLOAT,GL_FALSE, sizeof(Vertex),NULL);
   glEnableVertexAttribArray(1);
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void**)(3*sizeof(float)));
+  glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void**)(3*sizeof(float)));
+  glEnableVertexAttribArray(2);
+  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void**)(7 * sizeof(float)));
+
 
 
 
