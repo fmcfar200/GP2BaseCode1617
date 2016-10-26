@@ -47,6 +47,15 @@ void MyGame::render()
     glUniformMatrix4fv(MVPLocation, 1, GL_FALSE, glm::value_ptr(MVP));
   }
 
+  glBindSampler(0, m_Sampler);
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, m_Texture);
+  GLint textureLocation = glGetUniformLocation(m_ShaderProgram, "diffuseSampler");
+  if (textureLocation != -1)
+  {
+	  glUniform1i(textureLocation, 0);
+  }
+
   glDrawArrays(GL_TRIANGLES, 0, 6 );
 
 }
@@ -89,7 +98,7 @@ void MyGame::initScene()
 	vertexShaderProgram = loadShaderFromFile(vsPath, VERTEX_SHADER);
 
 	GLuint fragmentShaderProgram=0;
-	std::string fsPath = ASSET_PATH + SHADER_PATH + "/simpleFS.glsl";
+	std::string fsPath = ASSET_PATH + SHADER_PATH + "/textureFS.glsl";
 	fragmentShaderProgram = loadShaderFromFile(fsPath, FRAGMENT_SHADER);
 
   m_ShaderProgram = glCreateProgram();
