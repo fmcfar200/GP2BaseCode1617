@@ -1,10 +1,6 @@
 #include "MyGame.h"
 
-struct Vertex {
-	vec3 position;
-	vec4 colour;
-	vec2 textureCoords;
-};
+
 
 const std::string ASSET_PATH = "assets";
 const std::string SHADER_PATH = "/shaders";
@@ -57,11 +53,7 @@ void MyGame::initScene()
 	string fsPath = ASSET_PATH + SHADER_PATH + "/textureFS.glsl";
 	fragmentShaderProgram = loadShaderFromFile(fsPath, FRAGMENT_SHADER);
 
-	m_ShaderProgram = glCreateProgram();
-	glAttachShader(m_ShaderProgram, vertexShaderProgram);
-	glAttachShader(m_ShaderProgram, fragmentShaderProgram);
-	glLinkProgram(m_ShaderProgram);
-	checkForLinkErrors(m_ShaderProgram);
+	
 
 	//now we can delete the VS & FS Programs
 	glDeleteShader(vertexShaderProgram);
@@ -71,9 +63,7 @@ void MyGame::initScene()
 
 	//lets load texture
 	string texturePath = ASSET_PATH + TEXTURE_PATH + "/texture.png";
-	m_Texture = loadTextureFromFile(texturePath);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	
 
 	glGenSamplers(1,&m_ClampSampler);
 	glSamplerParameteri(m_ClampSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -84,11 +74,7 @@ void MyGame::initScene()
 
 void MyGame::destroyScene()
 {
-	glDeleteSamplers(1,&m_ClampSampler);
-	glDeleteTextures(1, &m_Texture);
-	glDeleteProgram(m_ShaderProgram);
-	glDeleteBuffers(1, &m_VBO);
-	glDeleteVertexArrays(1, &m_VAO);
+	
 }
 
 void MyGame::update()
@@ -104,23 +90,5 @@ void MyGame::render()
 {
 	GameApplication::render();
 
-	glUseProgram(m_ShaderProgram);
-	glBindVertexArray(m_VAO);
-
-	GLint MVPLocation = glGetUniformLocation(m_ShaderProgram, "MVP");
-	if (MVPLocation != -1)
-	{
-		mat4 MVP = m_ProjMatrix*m_ViewMatrix*m_ModelMatrix;
-		glUniformMatrix4fv(MVPLocation, 1, GL_FALSE, glm::value_ptr(MVP));
-	}
-	glBindSampler(0, m_ClampSampler);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_Texture);
-	GLint textureLocation = glGetUniformLocation(m_ShaderProgram, "diffuseSampler");
-	if (textureLocation != -1)
-	{
-		glUniform1i(textureLocation, 0);
-	}
-
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	
 }
