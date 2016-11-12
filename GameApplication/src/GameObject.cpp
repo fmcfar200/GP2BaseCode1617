@@ -110,7 +110,7 @@ void GameObject::loadShaders(const string & vsFilename, const string & fsFilenam
 	logShaderInfo(m_ShaderProgram);
 }
 
-void GameObject::copyVertexData(Vertex * pVerts, int numberOfVertcies,unsigned int *indices, int numberOfIndices)
+void GameObject::copyVertexData(Vertex * pVerts, int numberOfVertcies,int *indices, int numberOfIndices)
 {
 	m_NumberOfVertices = numberOfVertcies;
 	glGenBuffers(1, &m_VBO);
