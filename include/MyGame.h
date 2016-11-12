@@ -25,10 +25,10 @@ private:
 	mat4 m_ProjMatrix;
 	mat4 m_ModelMatrix;
 
-	GLuint m_Texture;
+	//GLuint m_Texture;
 	GLuint m_ClampSampler;
 
 	GameObject * m_TestObject;
-	GameObject * m_NewObject;
+	shared_ptr<GameObject> m_NewObject;
 };
 #endif

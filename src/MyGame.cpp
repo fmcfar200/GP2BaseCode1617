@@ -7,8 +7,8 @@ const std::string MODEL_PATH = "/models";
 
 MyGame::MyGame()
 {
-	m_TestObject = nullptr;
-	m_NewObject = nullptr;
+	//m_TestObject = nullptr;
+	//m_NewObject = nullptr;
 }
 
 MyGame::~MyGame()
@@ -23,9 +23,7 @@ void MyGame::initScene()
 		{vec3(-0.5f, -0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(0.0f,3.0f)},
 		{vec3(0.5f, -0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(3.0f,3.0f)},
 		{vec3(-0.5f,  0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(0.0f,0.0f)},
-		//{vec3(-0.5f, 0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(0.0f,0.0f)},
 		{vec3(0.5f, 0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(3.0f,0.0f)},
-		//{vec3(0.5f,  -0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(3.0f,3.0f)}
 	};
 
 	int indices[] =
@@ -42,12 +40,12 @@ void MyGame::initScene()
 
 	//lets load texture
 	string texturePath = ASSET_PATH + TEXTURE_PATH + "/texture.png";
-	m_TestObject->loadTexture(texturePath);
+	//m_TestObject->loadTexture(texturePath);
 
-	m_TestObject->copyVertexData(verts, 4, indices ,6 );
+	//m_TestObject->copyVertexData(verts, 4, indices ,6 );
 
 	string mPath = ASSET_PATH + MODEL_PATH + "/utah-teapot.fbx";
-	m_NewObject = loadModelFromFile(mPath);
+	m_NewObject = shared_ptr<GameObject>(loadModelFromFile(mPath));
 	m_NewObject->loadShaders(vsPath, fsPath);
 
 	
@@ -65,7 +63,6 @@ void MyGame::destroyScene()
 	if (m_NewObject)
 	{
 		m_NewObject->onDestroy();
-		delete m_NewObject;
 		m_NewObject = nullptr;
 	}
 }
@@ -78,7 +75,7 @@ void MyGame::update()
 	m_ViewMatrix = lookAt(vec3(0.0f, 0.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
 	m_ModelMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, -0.2f));
 
-	m_TestObject->onUpdate();
+	//m_TestObject->onUpdate();
 
 	m_NewObject->onUpdate();
 }
@@ -86,6 +83,6 @@ void MyGame::update()
 void MyGame::render()
 {
 	GameApplication::render();
-	m_TestObject->onRender(m_ViewMatrix, m_ProjMatrix);
+	//m_TestObject->onRender(m_ViewMatrix, m_ProjMatrix);
 	m_NewObject->onRender(m_ViewMatrix, m_ProjMatrix);
 }
