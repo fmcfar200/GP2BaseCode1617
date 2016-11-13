@@ -25,6 +25,8 @@ private:
 	mat4 m_ProjMatrix;
 	mat4 m_ModelMatrix;
 
+	vec3 m_CameraPosition;
+
 	//GLuint m_Texture;
 	GLuint m_ClampSampler;
 

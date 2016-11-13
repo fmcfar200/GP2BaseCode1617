@@ -7,8 +7,7 @@ const std::string MODEL_PATH = "/models";
 
 MyGame::MyGame()
 {
-	//m_TestObject = nullptr;
-	//m_NewObject = nullptr;
+	
 }
 
 MyGame::~MyGame()
@@ -18,7 +17,7 @@ MyGame::~MyGame()
 
 void MyGame::initScene()
 {
-	
+	/*
 	Vertex verts[] = {
 		{vec3(-0.5f, -0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(0.0f,3.0f)},
 		{vec3(0.5f, -0.5f, 0.0f),vec4(1.0f,1.0f,1.0f,1.0f),vec2(3.0f,3.0f)},
@@ -33,10 +32,10 @@ void MyGame::initScene()
 	};
 
 	m_TestObject = new GameObject();
-
+	*/
 	string vsPath = ASSET_PATH + SHADER_PATH + "/simpleVS.glsl";
 	string fsPath = ASSET_PATH + SHADER_PATH + "/textureFS.glsl";
-	m_TestObject->loadShaders(vsPath, fsPath);
+	//m_TestObject->loadShaders(vsPath, fsPath);
 
 	//lets load texture
 	string texturePath = ASSET_PATH + TEXTURE_PATH + "/texture.png";
@@ -48,23 +47,20 @@ void MyGame::initScene()
 	m_NewObject = shared_ptr<GameObject>(loadModelFromFile(mPath));
 	m_NewObject->loadShaders(vsPath, fsPath);
 
+	m_CameraPosition = vec3(0.0f, 0.0f, 100.0f);
+	
+
 	
 
 }
 
 void MyGame::destroyScene()
 {
-	if (m_TestObject)
-	{
-		m_TestObject->onDestroy();
-		delete m_TestObject;
-		m_TestObject = nullptr;
-	}
-	if (m_NewObject)
-	{
+	
+
+
 		m_NewObject->onDestroy();
-		m_NewObject = nullptr;
-	}
+
 }
 
 void MyGame::update()
@@ -72,17 +68,13 @@ void MyGame::update()
 	GameApplication::update();
 
 	m_ProjMatrix = perspective(radians(45.0f), (float)m_WindowWidth / (float)m_WindowHeight, 0.1f, 100.0f);
-	m_ViewMatrix = lookAt(vec3(0.0f, 0.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
-	m_ModelMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, -0.2f));
-
-	//m_TestObject->onUpdate();
-
+	m_ViewMatrix = lookAt(m_CameraPosition, vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
+	//m_ModelMatrix = translate(mat4(1.0f), vec3(0.0f, 0.0f, -0.2f));
 	m_NewObject->onUpdate();
 }
 
 void MyGame::render()
 {
 	GameApplication::render();
-	//m_TestObject->onRender(m_ViewMatrix, m_ProjMatrix);
 	m_NewObject->onRender(m_ViewMatrix, m_ProjMatrix);
 }
