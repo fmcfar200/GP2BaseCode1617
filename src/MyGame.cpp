@@ -27,11 +27,13 @@ void MyGame::initScene()
 
 	m_CameraPosition = vec3(0.0f, 0.0f, 100.0f);
 
+	/*
 	m_Light = shared_ptr<Light>(new Light());
 	m_Light->DiffuseColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->SpecularColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->Direction = vec3(0.0f, 0.0f, -1.0f);
 	m_AmbientLightColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	*/
 }
 
 void MyGame::onKeyDown(SDL_Keycode keyCode)
@@ -71,7 +73,7 @@ void MyGame::render()
 {
 	GameApplication::render();
 	GLuint currentShader = m_TestGO->getShaderProgram();
-
+	/*
 	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "ambientLightColour");
 	glUniform4fv(ambientLightColourLocation, 1, value_ptr(m_AmbientLightColour));
 
@@ -86,6 +88,6 @@ void MyGame::render()
 
 	GLint cameraPositionLocation = glGetUniformLocation(currentShader, "cameraPos");
 	glUniform3fv(cameraPositionLocation, 1, value_ptr(m_CameraPosition));
-
+	*/
 	m_TestGO->onRender(m_ViewMatrix, m_ProjMatrix);
 }
