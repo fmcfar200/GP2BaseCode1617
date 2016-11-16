@@ -17,15 +17,19 @@ MyGame::~MyGame()
 
 void MyGame::initScene()
 {
-	string modelPath = ASSET_PATH + MODEL_PATH + "/utah-teapot.fbx";
-	string vsFilename = ASSET_PATH + SHADER_PATH + "/lightVS.glsl";
-	string fsFilename = ASSET_PATH + SHADER_PATH + "/lightFS.glsl";
+	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
+	string vsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
+	string fsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
+	string diffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
+	string specTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
+
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	m_TestGO->loadShaders(vsFilename, fsFilename);
+	m_TestGO->loadDiffuseTexture(diffTexPath);
+	m_TestGO->loadSpecularTexture(specTexPath);
 
-	m_TestGO->setScale(vec3(0.5f, 0.5f, 0.5f));
-
-	m_CameraPosition = vec3(0.0f, 0.0f, 100.0f);
+	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
+	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
 
 	
 	m_Light = shared_ptr<Light>(new Light());
@@ -52,6 +56,16 @@ void MyGame::onKeyDown(SDL_Keycode keyCode)
 	else if (keyCode==SDLK_s)
 	{
 		m_TestGO->rotate(vec3(0.1f,0.0f,0.0f));
+	}
+
+	if (keyCode == SDLK_DOWN)
+	{
+		m_CameraPosition = vec3(m_CameraPosition.x, m_CameraPosition.y, m_CameraPosition.z + 0.25f);
+	}
+	else if (keyCode == SDLK_UP)
+	{
+		m_CameraPosition = vec3(m_CameraPosition.x, m_CameraPosition.y, m_CameraPosition.z - 0.25f);
+
 	}
 }
 
