@@ -4,8 +4,16 @@
 #include "Common.h"
 #include "Shader.h"
 #include "Texture.h"
+<<<<<<< HEAD
 #include "GameObject.h"
 #include "ModelLoading.h"
+=======
+#include "Vertex.h"
+#include "ModelLoading.h"
+
+#include "GameObject.h"
+#include "Light.h"
+>>>>>>> refs/remotes/origin/Lab6-Complete
 
 //Game Application class, this basically wraps up the initialisation of a game
 //this will be the base class of any game we are making. You should override this
@@ -37,6 +45,8 @@ public:
 
 	virtual void initScene();
 	virtual void destroyScene();
+
+	virtual void onKeyDown(SDL_Keycode keyCode);
 
 	void OnBeginRender();
 	void OnEndRender();
