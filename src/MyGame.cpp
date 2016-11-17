@@ -92,7 +92,7 @@ void MyGame::render()
 	GameApplication::render();
 	GLuint currentShader = m_TestGO->getShaderProgram();
 	
-	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "ambientLightColour");
+	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "directionLight.ambientColour");
 	glUniform4fv(ambientLightColourLocation, 1, value_ptr(m_AmbientLightColour));
 
 	GLint diffuseLightColourLocation = glGetUniformLocation(currentShader, "diffuseLightColour");
@@ -101,7 +101,7 @@ void MyGame::render()
 	GLint specularLightColourLocation = glGetUniformLocation(currentShader, "specularLightColour");
 	glUniform4fv(specularLightColourLocation, 1, value_ptr(m_Light->SpecularColour));
 
-	GLint lightDirectionLocation = glGetUniformLocation(currentShader, "lightDirection");
+	GLint lightDirectionLocation = glGetUniformLocation(currentShader, "directionLight.direction");
 	glUniform3fv(lightDirectionLocation, 1, value_ptr(m_Light->Direction));
 
 	GLint cameraPositionLocation = glGetUniformLocation(currentShader, "cameraPos");
