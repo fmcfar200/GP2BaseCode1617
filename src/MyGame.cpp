@@ -17,12 +17,14 @@ MyGame::~MyGame()
 
 void MyGame::initScene()
 {
+	//asset paths
 	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
 	string vsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string fsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 	string diffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string specTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
 
+	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	m_TestGO->loadShaders(vsFilename, fsFilename);
 	m_TestGO->loadDiffuseTexture(diffTexPath);
@@ -31,7 +33,7 @@ void MyGame::initScene()
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
 
-	
+	//lighting
 	m_Light = shared_ptr<Light>(new Light());
 	m_Light->DiffuseColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	m_Light->SpecularColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -42,6 +44,7 @@ void MyGame::initScene()
 
 void MyGame::onKeyDown(SDL_Keycode keyCode)
 {
+	//input for rotation
 	if (keyCode == SDLK_a)
 	{
 		m_TestGO->rotate(vec3(0.0f, -0.1f, 0.0f));
@@ -58,6 +61,7 @@ void MyGame::onKeyDown(SDL_Keycode keyCode)
 		m_TestGO->rotate(vec3(0.1f,0.0f,0.0f));
 	}
 
+	//input for zooming
 	if (keyCode == SDLK_DOWN)
 	{
 		m_CameraPosition = vec3(m_CameraPosition.x, m_CameraPosition.y, m_CameraPosition.z + 0.25f);

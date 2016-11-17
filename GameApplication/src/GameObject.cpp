@@ -70,8 +70,20 @@ void GameObject::onRender(mat4& view, mat4& projection)
 	glBindSampler(0, m_Sampler);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_DiffuseTexture);
-	GLint textureLocation = glGetUniformLocation(m_ShaderProgram, "diffuseSampler");
-	glUniform1i(textureLocation, 0);
+	GLint diffuseTextureLocation = glGetUniformLocation(m_ShaderProgram, "diffuseSampler");
+	glUniform1i(diffuseTextureLocation, 0);
+
+	glBindSampler(1, m_Sampler);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, m_SpecularTexture);
+	GLint specTextureLocation = glGetUniformLocation(m_ShaderProgram, "specularSampler");
+	glUniform1i(specTextureLocation, 1);
+
+	
+
+	
+
+
 
 	GLint ambientLocation = glGetUniformLocation(m_ShaderProgram, "ambientMaterialColour");
 	glUniform4fv(ambientLocation, 1, value_ptr(m_AmbientMaterialColour));
@@ -121,7 +133,7 @@ void GameObject::loadDiffuseTexture(const string & filename)
 	glBindTexture(GL_TEXTURE_2D, m_DiffuseTexture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	glGenSamplers(1, &m_Sampler);
+	glGenSamplers(0, &m_Sampler);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_WRAP_S, GL_REPEAT);
