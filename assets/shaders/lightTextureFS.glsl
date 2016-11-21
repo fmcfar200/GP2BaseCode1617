@@ -35,7 +35,7 @@ void main()
 {
 	
 	directionLight.direction=normalize(-directionLight.direction);
-	float diffuseTerm = dot(vertexNormalOut, lightDir);
+	float diffuseTerm = dot(vertexNormalOut, directionLight.direction);
 	vec3 halfWayVec = normalize(cameraDirectionOut + directionLight.direction);
 	float specularTerm = pow(dot(vertexNormalOut, halfWayVec), specularPower);
 	
