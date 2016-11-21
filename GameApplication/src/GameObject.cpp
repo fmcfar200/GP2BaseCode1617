@@ -22,6 +22,7 @@ GameObject::GameObject()
 	m_ShaderProgram=0;
 	m_DiffuseTexture=0;
 	m_SpecularTexture = 0;
+	m_NormalTexture = 0;
 	m_Sampler=0;
 	m_pParent = nullptr;
 
@@ -79,6 +80,12 @@ void GameObject::onRender(mat4& view, mat4& projection)
 	GLint specTextureLocation = glGetUniformLocation(m_ShaderProgram, "specularSampler");
 	glUniform1i(specTextureLocation, 1);
 
+	glBindSampler(2, m_Sampler);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, m_NormalTexture);
+	GLint normalTextureLocation = glGetUniformLocation(m_ShaderProgram, "normalSampler");
+	glUniform1i(specTextureLocation, 2);
+
 	
 
 	
@@ -133,7 +140,7 @@ void GameObject::loadDiffuseTexture(const string & filename)
 	glBindTexture(GL_TEXTURE_2D, m_DiffuseTexture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	glGenSamplers(0, &m_Sampler);
+	glGenSamplers(1, &m_Sampler);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glSamplerParameteri(m_Sampler, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -147,6 +154,13 @@ void GameObject::loadSpecularTexture(const string & filename)
 	glBindTexture(GL_TEXTURE_2D, m_SpecularTexture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
+}
+
+void GameObject::loadNormalTexture(const string & filename)
+{
+	m_NormalTexture = loadTextureFromFile(filename);
+	glBindTexture(GL_TEXTURE_2D, m_NormalTexture);
+	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
 void GameObject::loadShaders(const string & vsFilename, const string & fsFilename)
