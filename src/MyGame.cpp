@@ -19,11 +19,12 @@ void MyGame::initScene()
 {
 	//asset paths
 	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
-	string vsFilename = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
-	string fsFilename = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
+	string vsFilename = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
+	string fsFilename = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
 	string diffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string specTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
 	string bumpTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_norm.png";
+	string heightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
 
 	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
@@ -31,6 +32,7 @@ void MyGame::initScene()
 	m_TestGO->loadDiffuseTexture(diffTexPath);
 	m_TestGO->loadSpecularTexture(specTexPath);
 	m_TestGO->loadNormalTexture(bumpTexPath);
+	m_TestGO->loadHeightMapTexture(heightTexPath);
 
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
@@ -97,10 +99,10 @@ void MyGame::render()
 	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "directionLight.ambientColour");
 	glUniform4fv(ambientLightColourLocation, 1, value_ptr(m_AmbientLightColour));
 
-	GLint diffuseLightColourLocation = glGetUniformLocation(currentShader, "diffuseLightColour");
+	GLint diffuseLightColourLocation = glGetUniformLocation(currentShader, "directionLight.diffuseColour");
 	glUniform4fv(diffuseLightColourLocation, 1, value_ptr(m_Light->DiffuseColour));
 
-	GLint specularLightColourLocation = glGetUniformLocation(currentShader, "specularLightColour");
+	GLint specularLightColourLocation = glGetUniformLocation(currentShader, "directionLight.specularColour");
 	glUniform4fv(specularLightColourLocation, 1, value_ptr(m_Light->SpecularColour));
 
 	GLint lightDirectionLocation = glGetUniformLocation(currentShader, "directionLight.direction");

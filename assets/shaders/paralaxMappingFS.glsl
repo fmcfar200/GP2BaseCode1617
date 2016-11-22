@@ -13,6 +13,11 @@ uniform vec4 diffuseMaterialColour=vec4(0.8f,0.0f,0.0f,1.0f);
 uniform vec4 specularMaterialColour=vec4(1.0f,1.0f,1.0f,1.0f);
 uniform float specularPower=25.0f;
 
+uniform float bias = 0.03f;
+uniform float scale = 0.015f;
+
+uniform sampler2D heightMap;
+
 uniform sampler2D diffuseSampler;
 uniform sampler2D specularSampler;
 uniform sampler2D normalSampler;
@@ -34,7 +39,11 @@ uniform DirectionalLight directionLight;
 
 void main()
 {
-	vec3 bumpNormals = 2.0f * texture(normalSampler, vertexTextureCoordsOut).rgb -1.0f;
+	float height = texture(heightMap, vertexTextureCoordsOut).r;
+	vec2 correctTexCoords = scale*vertexTextureCoordsOut*height;
+	correctTexCoords = correctTexCoords - bias;
+	
+	vec3 bumpNormals = 2.0f * texture(normalSampler, correctTexCoords).rgb -1.0f;
 	bumpNormals = normalize(bumpNormals);
 	
 	directionLight.direction=normalize(-directionLight.direction);
@@ -44,8 +53,8 @@ void main()
 	
 	
 	
-	vec4 diffuseTextureColour = texture(diffuseSampler, vertexTextureCoordsOut);
-	vec4 specularTextureColour = texture(specularSampler, vertexTextureCoordsOut);
+	vec4 diffuseTextureColour = texture(diffuseSampler, correctTexCoords);
+	vec4 specularTextureColour = texture(specularSampler, correctTexCoords);
 	
 	vec4 diffuseColour = diffuseTextureColour*directionLight.diffuseColour*diffuseTerm;
 	vec4 specularColour = specularTextureColour*directionLight.specularColour*specularTerm;
