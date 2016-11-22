@@ -20,11 +20,11 @@ uniform sampler2D normalSampler;
 
 struct DirectionalLight
 {
-	 vec4 ambientColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 diffuseColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 specularColour=vec4(1.0f,1.0f,1.0f,1.0f);
+	 vec4 ambientColour;
+	 vec4 diffuseColour;
+	 vec4 specularColour;
 	 
-	 vec3 direction=vec3(0.0f,0.0f,1.0f);
+	 vec3 direction=;
 
 
 }

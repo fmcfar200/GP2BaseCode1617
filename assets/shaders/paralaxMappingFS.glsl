@@ -8,10 +8,10 @@ in vec2 vertexTextureCoordsOut;
 in mat3	tangentMatrix;
 
 
-uniform vec4 ambientMaterialColour=vec4(0.5f,0.0f,0.0f,1.0f);
-uniform vec4 diffuseMaterialColour=vec4(0.8f,0.0f,0.0f,1.0f);
-uniform vec4 specularMaterialColour=vec4(1.0f,1.0f,1.0f,1.0f);
-uniform float specularPower=25.0f;
+uniform vec4 ambientMaterialColour;
+uniform vec4 diffuseMaterialColour;
+uniform vec4 specularMaterialColour;
+uniform float specularPower;
 
 uniform float bias = 0.03f;
 uniform float scale = 0.015f;
@@ -25,11 +25,11 @@ uniform sampler2D normalSampler;
 
 struct DirectionalLight
 {
-	 vec4 ambientColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 diffuseColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 specularColour=vec4(1.0f,1.0f,1.0f,1.0f);
+	 vec4 ambientColour;
+	 vec4 diffuseColour;
+	 vec4 specularColour;
 	 
-	 vec3 direction=vec3(0.0f,0.0f,1.0f);
+	 vec3 direction;
 
 
 }

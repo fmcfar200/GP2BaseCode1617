@@ -19,11 +19,11 @@ uniform sampler2D specularSampler;
 
 struct DirectionalLight
 {
-	 vec4 ambientColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 diffuseColour=vec4(1.0f,1.0f,1.0f,1.0f);
-	 vec4 specularColour=vec4(1.0f,1.0f,1.0f,1.0f);
+	 vec4 ambientColour;
+	 vec4 diffuseColour;
+	 vec4 specularColour;
 	 
-	 vec3 direction=vec3(0.0f,0.0f,1.0f);
+	 vec3 direction;
 
 
 }
@@ -43,8 +43,9 @@ void main()
 	vec4 diffuseTextureColour = texture(diffuseSampler, vertexTextureCoordsOut);
 	vec4 specularTextureColour = texture(specularSampler, vertexTextureCoordsOut);
 	
+	vec4 ambientColour = ambientMaterialColour*directionLight.ambientColour;
 	vec4 diffuseColour = diffuseTextureColour*directionLight.diffuseColour*diffuseTerm;
 	vec4 specularColour = specularTextureColour*directionLight.specularColour*specularTerm;
 	
-	FragColor = (ambientMaterialColour*directionLight.ambientColour) + diffuseColour + specularColour;
+	FragColor = ambientColour + diffuseColour + specularColour;
 }
