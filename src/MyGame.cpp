@@ -19,16 +19,18 @@ void MyGame::initScene()
 {
 	//asset paths
 	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
-	string vsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
-	string fsFilename = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
+	string vsFilename = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
+	string fsFilename = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
 	string diffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string specTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
+	string bumpTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_norm.png";
 
 	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	m_TestGO->loadShaders(vsFilename, fsFilename);
 	m_TestGO->loadDiffuseTexture(diffTexPath);
 	m_TestGO->loadSpecularTexture(specTexPath);
+	m_TestGO->loadNormalTexture(bumpTexPath);
 
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
