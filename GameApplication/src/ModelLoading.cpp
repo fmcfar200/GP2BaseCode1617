@@ -30,11 +30,26 @@ GameObject * loadModelFromFile(const string & filename)
 		for (int v = 0; v < mesh->mNumVertices; v++)
 		{
 			aiVector3D position = mesh->mVertices[v];
+<<<<<<< HEAD
 			aiVector3D normal = mesh->mNormals[v];
 			
 			Vertex ourV;
 			ourV.position = vec3(position.x, position.y, position.z);
 			ourV.normal = vec3(normal.x, normal.y, normal.z);
+=======
+<<<<<<< HEAD
+
+			Vertex ourV;
+			ourV.position = vec3(position.x, position.y, position.z);
+
+=======
+			aiVector3D normal = mesh->mNormals[v];
+
+			Vertex ourV;
+			ourV.position = vec3(position.x, position.y, position.z);
+			ourV.normal = vec3(normal.x, normal.y, normal.z);
+>>>>>>> refs/remotes/origin/Lab6-Complete
+>>>>>>> 83618264510ee2ae0ae2025f5699f9661e7774e3
 
 			verts.push_back(ourV);
 		}

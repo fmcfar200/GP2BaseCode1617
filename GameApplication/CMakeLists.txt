@@ -11,7 +11,10 @@ find_package(GLEW REQUIRED)
 find_package(SDL2_Image REQUIRED)
 find_package(SDL2_TTF REQUIRED)
 find_package(assimp REQUIRED)
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/Lab6-Complete
 
 if (GLEW_FOUND)
   message("GLEW_INCLUDE_DIRS")
@@ -20,7 +23,14 @@ ENDIF(GLEW_FOUND)
 
 add_subdirectory(Utils)
 
+<<<<<<< HEAD
 add_library(GameApplication STATIC src/GameObject.cpp src/GameApplication.cpp src/Shader.cpp src/Texture.cpp src/ModelLoading.cpp include/Common.h include/GameApplication.h include/Shader.h include/Texture.h include/GameObject.h include/Vertex.h include/ModelLoading.h)
 
 include_directories(GameApplication include/ Utils/include ${SDL2_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR} ${SDL2_TTF_INCLUDE_DIR} ${ASSIMP_INLCUDE_DIR})
 target_link_libraries(GameApplication Utils ${SDL2_LIBRARY} ${TINYXML_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${SDL2IMAGE_LIBRARY} ${SDL2_TTF_LIBRARIES} ${CMAKE_DL_LIBS} ${ASSIMP_LIBRARIES})
+=======
+add_library(GameApplication STATIC src/GameApplication.cpp src/Shader.cpp src/Texture.cpp src/GameObject.cpp src/ModelLoading.cpp include/Common.h include/GameApplication.h include/Shader.h include/Texture.h include/Vertex.h include/GameObject.h include/ModelLoading.h include/Light.h)
+
+include_directories(GameApplication include/ Utils/include ${SDL2_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR} ${SDL2_TTF_INCLUDE_DIR} ${ASSIMP_INCLUDE_DIR})
+target_link_libraries(GameApplication Utils ${SDL2_LIBRARY} ${TINYXML_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${SDL2IMAGE_LIBRARY} ${SDL2_TTF_LIBRARIES} ${ASSIMP_LIBRARIES} ${CMAKE_DL_LIBS})
+>>>>>>> refs/remotes/origin/Lab6-Complete
