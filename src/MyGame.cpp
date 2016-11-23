@@ -23,12 +23,13 @@ void MyGame::initScene()
 	string lightTextureVSPath = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string lightTextureFSPath = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 
+	/*
 	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
 	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
 
 	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
 	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
-
+	*/
 	//earth textures
 	string earthDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string earthSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
@@ -50,6 +51,7 @@ void MyGame::initScene()
 	m_TestGO->loadNormalTexture(earthBumpTexPath);
 	m_TestGO->loadHeightMapTexture(earthHeightTexPath);
 
+	m_TestGO->setPosition(vec3(0.0f, 0.0f, 0.0f));
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
 
