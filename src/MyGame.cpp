@@ -23,11 +23,11 @@ void MyGame::initScene()
 	string lightTextureVSPath = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string lightTextureFSPath = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 
-	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "normalMappingVS.glsl";
-	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "normalMappingFS.glsl";
+	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
+	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
 
-	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "paralaxMappingVS.glsl";
-	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "paralaxMappingFS.glsl";
+	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
+	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
 
 	//earth textures
 	string earthDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
