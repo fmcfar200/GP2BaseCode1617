@@ -24,10 +24,8 @@ struct DirectionalLight
 	 vec4 diffuseColour;
 	 vec4 specularColour;
 	 
-	 vec3 direction=;
-
-
-}
+	 vec3 direction;
+};
 
 uniform DirectionalLight directionLight;
 
@@ -37,9 +35,9 @@ void main()
 	vec3 bumpNormals = 2.0f * texture(normalSampler, vertexTextureCoordsOut).rgb -1.0f;
 	bumpNormals = normalize(bumpNormals);
 	
-	directionLight.direction=normalize(-directionLight.direction);
-	float diffuseTerm = dot(bumpNormals, directionLight.direction);
-	vec3 halfWayVec = normalize(cameraDirectionOut + directionLight.direction);
+	vec3 lightDir = normalize(-directionLight.direction);
+	float diffuseTerm = dot(bumpNormals, lightDir);
+	vec3 halfWayVec = normalize(cameraDirectionOut + lightDir);
 	float specularTerm = pow(dot(bumpNormals, halfWayVec), specularPower);
 	
 	

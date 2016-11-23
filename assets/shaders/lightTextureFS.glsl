@@ -17,6 +17,7 @@ uniform sampler2D specularSampler;
 
 
 
+
 struct DirectionalLight
 {
 	 vec4 ambientColour;
@@ -24,19 +25,20 @@ struct DirectionalLight
 	 vec4 specularColour;
 	 
 	 vec3 direction;
-
-
-}
+};
 
 uniform DirectionalLight directionLight;
 
 
+
 void main()
 {
+
+
 	
-	directionLight.direction=normalize(-directionLight.direction);
-	float diffuseTerm = dot(vertexNormalOut, directionLight.direction);
-	vec3 halfWayVec = normalize(cameraDirectionOut + directionLight.direction);
+	vec3 lightDir=normalize(-directionLight.direction);
+	float diffuseTerm = dot(vertexNormalOut, lightDir);
+	vec3 halfWayVec = normalize(cameraDirectionOut + lightDir);
 	float specularTerm = pow(dot(vertexNormalOut, halfWayVec), specularPower);
 	
 	

@@ -15,10 +15,9 @@ out vec3 cameraDirectionOut;
 out vec3 lightDirectionOut;
 out mat3 tangentMatrix;
 
-uniform vec3 cameraPos;
 uniform mat4 MVP;
 uniform mat4 Model;
-uniform vec3 cameraPos;
+uniform vec3 cameraPos = vec3(0.0f,0.0f,10.0f);;
 uniform vec3 lightDirection;
 
 void main()
@@ -31,13 +30,12 @@ void main()
 	tangentMatrix = mat3(vertexTangentModel,vertexBinormalModel,vertexNormalModel);
 	
 	vec3 worldPos = (Model*vec4(vertexPosition, 1.0)).xyz;
-	cameraDir = normalize(cameraPos - worldPos);
+	vec3 cameraDir = normalize(cameraPos - worldPos);
 	
 	cameraDirectionOut = normalize(cameraDir*tangentMatrix);	
 	vertexNormalOut = normalize(tangentMatrix*vertexNormalModel);
 	lightDirectionOut = normalize(tangentMatrix*lightDirection);
 	
-																		
 
 	gl_Position = MVP * vec4(vertexPosition, 1.0);
 	vertexColoursOut=vertexColours;
