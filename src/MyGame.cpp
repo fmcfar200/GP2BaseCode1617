@@ -23,10 +23,11 @@ void MyGame::initScene()
 	string lightTextureVSPath = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string lightTextureFSPath = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 
-	/*
+	
 	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
 	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
 
+	/*
 	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
 	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
 	*/
@@ -34,7 +35,7 @@ void MyGame::initScene()
 	string earthDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string earthSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
 	string earthBumpTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_norm.png";
-	string earthHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
+	//string earthHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
 
 	string brickDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_diff.png";
 	string brickSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_spec.png";
@@ -45,11 +46,11 @@ void MyGame::initScene()
 
 	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	m_TestGO->loadShaders(lightTextureVSPath, lightTextureFSPath);
+	m_TestGO->loadShaders(normalMappingVSPath, normalMappingFSPath);
 	m_TestGO->loadDiffuseTexture(earthDiffTexPath);
 	m_TestGO->loadSpecularTexture(earthSpecTexPath);
 	m_TestGO->loadNormalTexture(earthBumpTexPath);
-	m_TestGO->loadHeightMapTexture(earthHeightTexPath);
+	//m_TestGO->loadHeightMapTexture(earthHeightTexPath);
 
 	m_TestGO->setPosition(vec3(0.0f, 0.0f, 0.0f));
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
