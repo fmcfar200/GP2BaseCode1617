@@ -20,40 +20,42 @@ void MyGame::initScene()
 	//asset paths
 	string modelPath = ASSET_PATH + MODEL_PATH + "/Earth.fbx";
 
+	//light texture vs and fs path
 	string lightTextureVSPath = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string lightTextureFSPath = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 
-	
+	//normal mapping paths
 	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
 	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
 
-	/*
-	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
-	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
-	*/
+	//parallax paths
+	string parallaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/parallaxMappingVS.glsl";
+	string parallaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/parallaxMappingFS.glsl";
+	
 	//earth textures
 	string earthDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
 	string earthSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_spec.png";
 	string earthBumpTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_norm.png";
-	//string earthHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
+	string earthHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
 
+	//brick textures
 	string brickDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_diff.png";
 	string brickSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_spec.png";
 	string brickBumpTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_norm.png";
 	string brickHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_height.png";
 
-	//brickTextures
 
 	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	m_TestGO->loadShaders(normalMappingVSPath, normalMappingFSPath);
-	m_TestGO->loadDiffuseTexture(earthDiffTexPath);
-	m_TestGO->loadSpecularTexture(earthSpecTexPath);
-	m_TestGO->loadNormalTexture(earthBumpTexPath);
-	//m_TestGO->loadHeightMapTexture(earthHeightTexPath);
-
+	m_TestGO->loadShaders(parallaxMappingVSPath, parallaxMappingFSPath);
+	m_TestGO->loadDiffuseTexture(brickDiffTexPath);
+	m_TestGO->loadSpecularTexture(brickSpecTexPath);
+	m_TestGO->loadNormalTexture(brickBumpTexPath);
+	m_TestGO->loadHeightMapTexture(brickHeightTexPath);
 	m_TestGO->setPosition(vec3(0.0f, 0.0f, 0.0f));
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
+
+
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
 
 	//lighting

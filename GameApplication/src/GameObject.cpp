@@ -86,13 +86,13 @@ void GameObject::onRender(mat4& view, mat4& projection)
 	GLint normalTextureLocation = glGetUniformLocation(m_ShaderProgram, "normalSampler");
 	glUniform1i(normalTextureLocation, 2);
 
-	/*
+	
 	glBindSampler(3, m_Sampler);
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, m_HeightMapTexture);
-	GLint heightTextureLocation = glGetUniformLocation(m_ShaderProgram, "heightMap");
+	GLint heightTextureLocation = glGetUniformLocation(m_ShaderProgram, "heightSampler");
 	glUniform1i(heightTextureLocation, 3);
-	*/
+	
 
 
 	
@@ -172,14 +172,14 @@ void GameObject::loadNormalTexture(const string & filename)
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-/*
+
 void GameObject::loadHeightMapTexture(const string & filename)
 {
 	m_HeightMapTexture = loadTextureFromFile(filename);
 	glBindTexture(GL_TEXTURE_2D, m_HeightMapTexture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
-*/
+
 
 void GameObject::loadShaders(const string & vsFilename, const string & fsFilename)
 {
