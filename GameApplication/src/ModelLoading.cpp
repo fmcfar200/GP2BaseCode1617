@@ -44,8 +44,6 @@ GameObject * loadModelFromFile(const string & filename)
 				ourV.tangent = vec3(tangents.x, tangents.y, tangents.z);
 			}
 
-			
-
 			for (int t = 0; t < mesh->GetNumUVChannels(); t++)
 			{
 				if (mesh->HasTextureCoords(t))
