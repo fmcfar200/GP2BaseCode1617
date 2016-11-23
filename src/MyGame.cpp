@@ -39,24 +39,35 @@ void MyGame::initScene()
 	string earthHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_height.png";
 
 	//brick textures
-	string brickDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_diff.png";
+	string brickDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_diff.jpg";
 	string brickSpecTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_spec.png";
 	string brickBumpTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_norm.png";
 	string brickHeightTexPath = ASSET_PATH + TEXTURE_PATH + "/bricks_height.png";
 
 
 	//loads model and shaders
+	
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	m_TestGO->loadShaders(parallaxMappingVSPath, parallaxMappingFSPath);
 	m_TestGO->loadDiffuseTexture(brickDiffTexPath);
 	m_TestGO->loadSpecularTexture(brickSpecTexPath);
 	m_TestGO->loadNormalTexture(brickBumpTexPath);
 	m_TestGO->loadHeightMapTexture(brickHeightTexPath);
-	m_TestGO->setPosition(vec3(0.0f, 0.0f, 0.0f));
-	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
+	m_TestGO->setPosition(vec3(-2.5f, 0.0f, 0.0f));
+	m_TestGO->setScale(vec3(1.0f, 1.0f, 1.0f));
+	
+	/*
+	m_TestGO = shared_ptr<GameObject>(loadModelFromFile(modelPath));
+	m_TestGO->loadShaders(parallaxMappingVSPath, parallaxMappingFSPath);
+	m_TestGO->loadDiffuseTexture(earthDiffTexPath);
+	m_TestGO->loadSpecularTexture(earthSpecTexPath);
+	m_TestGO->loadNormalTexture(earthBumpTexPath);
+	m_TestGO->loadHeightMapTexture(earthHeightTexPath);
+	m_TestGO->setPosition(vec3(-2.5f, 0.0f, 0.0f));
+	m_TestGO->setScale(vec3(1.0f, 1.0f, 1.0f));
+	*/
 
-
-	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
+	m_CameraPosition = vec3(0.0f, 0.0f, 25.0f);
 
 	//lighting
 	m_Light = shared_ptr<Light>(new Light());
