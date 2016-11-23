@@ -23,11 +23,11 @@ void MyGame::initScene()
 	string lightTextureVSPath = ASSET_PATH + SHADER_PATH + "/lightTextureVS.glsl";
 	string lightTextureFSPath = ASSET_PATH + SHADER_PATH + "/lightTextureFS.glsl";
 
-	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "/normalMappingVS.glsl";
-	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "/normalMappingFS.glsl";
+	string normalMappingVSPath = ASSET_PATH + SHADER_PATH + "normalMappingVS.glsl";
+	string normalMappingFSPath = ASSET_PATH + SHADER_PATH + "normalMappingFS.glsl";
 
-	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingVS.glsl";
-	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "/paralaxMappingFS.glsl";
+	string paralaxMappingVSPath = ASSET_PATH + SHADER_PATH + "paralaxMappingVS.glsl";
+	string paralaxMappingFSPath = ASSET_PATH + SHADER_PATH + "paralaxMappingFS.glsl";
 
 	//earth textures
 	string earthDiffTexPath = ASSET_PATH + TEXTURE_PATH + "/earth_diff.png";
@@ -44,11 +44,12 @@ void MyGame::initScene()
 
 	//loads model and shaders
 	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	m_TestGO->loadShaders(normalMappingVSPath, normalMappingFSPath);
+	m_TestGO->loadShaders(lightTextureVSPath, lightTextureFSPath);
 	m_TestGO->loadDiffuseTexture(earthDiffTexPath);
 	m_TestGO->loadSpecularTexture(earthSpecTexPath);
 	m_TestGO->loadNormalTexture(earthBumpTexPath);
 	m_TestGO->loadHeightMapTexture(earthHeightTexPath);
+
 	m_TestGO->setScale(vec3(1.5f, 1.5f, 1.5f));
 	m_CameraPosition = vec3(0.0f, 0.0f, 50.0f);
 
@@ -111,16 +112,16 @@ void MyGame::render()
 	GameApplication::render();
 	GLuint currentShader = m_TestGO->getShaderProgram();
 	
-	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "ambientLightColour");
+	GLint ambientLightColourLocation = glGetUniformLocation(currentShader, "directionLight.ambientColour");
 	glUniform4fv(ambientLightColourLocation, 1, value_ptr(m_AmbientLightColour));
 
-	GLint diffuseLightColourLocation = glGetUniformLocation(currentShader, "diffuseLightColour");
+	GLint diffuseLightColourLocation = glGetUniformLocation(currentShader, "directionLight.diffuseColour");
 	glUniform4fv(diffuseLightColourLocation, 1, value_ptr(m_Light->DiffuseColour));
 
-	GLint specularLightColourLocation = glGetUniformLocation(currentShader, "specularLightColour");
+	GLint specularLightColourLocation = glGetUniformLocation(currentShader, "directionLight.specularColour");
 	glUniform4fv(specularLightColourLocation, 1, value_ptr(m_Light->SpecularColour));
 
-	GLint lightDirectionLocation = glGetUniformLocation(currentShader, "lightDir");
+	GLint lightDirectionLocation = glGetUniformLocation(currentShader, "directionLight.direction");
 	glUniform3fv(lightDirectionLocation, 1, value_ptr(m_Light->Direction));
 
 	GLint cameraPositionLocation = glGetUniformLocation(currentShader, "cameraPos");

@@ -4,7 +4,6 @@
 #include "Common.h"
 
 struct Vertex {
-
 	vec3 position;
 	vec4 colours;
 	vec2 texCoords0;
