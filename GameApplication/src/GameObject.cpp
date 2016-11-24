@@ -26,7 +26,7 @@ GameObject::GameObject()
 	m_Sampler=0;
 	m_pParent = nullptr;
 
-	m_AmbientMaterialColour=vec4(0.2f,0.2f,0.2f,1.0f);
+	m_AmbientMaterialColour=vec4(0.0f,0.0f,0.0f,1.0f);
 	m_DiffuseMaterialColour=vec4(0.5f,0.5f,0.5f,1.0f);
 	m_SpecularMaterialColour=vec4(1.0f,1.0f,1.0f,1.0f);
 	m_SpecularMaterialPower=25.0f;
@@ -219,13 +219,24 @@ void GameObject::copyVertexData(Vertex * pVertex, int numberOfVertices, int * pI
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		NULL);
+
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		(void**)(offsetof(Vertex, colours)));
+
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		(void**)(offsetof(Vertex, texCoords0)));
+
 	glEnableVertexAttribArray(3);
 	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
 		(void**)(offsetof(Vertex, normal)));
+
+	glEnableVertexAttribArray(4);
+	glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		(void**)(offsetof(Vertex, tangent)));
+
+	glEnableVertexAttribArray(5);
+	glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+		(void**)(offsetof(Vertex, binormal)));
 }

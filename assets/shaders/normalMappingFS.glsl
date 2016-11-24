@@ -37,7 +37,7 @@ uniform DirectionalLight directionLight;
 void main()
 {
 
-	vec3 bumpNormals = 2.0f*(texture(normalSampler,vertexTextureCoordsOut).xyz)-1.0f;
+	vec3 bumpNormals = 2.0f*texture(normalSampler,vertexTextureCoordsOut).xyz-1.0f;
 	bumpNormals = normalize(bumpNormals);
 	
 	vec3 lightDir=normalize(-directionLight.direction);

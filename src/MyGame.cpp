@@ -47,27 +47,17 @@ void MyGame::initScene()
 
 	//loads model and shaders
 	
-	m_TestGO=shared_ptr<GameObject>(loadModelFromFile(modelPath));
+	m_TestGO = shared_ptr<GameObject>(loadModelFromFile(modelPath));
 	m_TestGO->loadShaders(parallaxMappingVSPath, parallaxMappingFSPath);
 	m_TestGO->loadDiffuseTexture(brickDiffTexPath);
 	m_TestGO->loadSpecularTexture(brickSpecTexPath);
 	m_TestGO->loadNormalTexture(brickBumpTexPath);
 	m_TestGO->loadHeightMapTexture(brickHeightTexPath);
-	m_TestGO->setPosition(vec3(-2.5f, 0.0f, 0.0f));
+	m_TestGO->setPosition(vec3(0.0f, 0.0f, 0.0f));
 	m_TestGO->setScale(vec3(1.0f, 1.0f, 1.0f));
 	
-	/*
-	m_TestGO = shared_ptr<GameObject>(loadModelFromFile(modelPath));
-	m_TestGO->loadShaders(parallaxMappingVSPath, parallaxMappingFSPath);
-	m_TestGO->loadDiffuseTexture(earthDiffTexPath);
-	m_TestGO->loadSpecularTexture(earthSpecTexPath);
-	m_TestGO->loadNormalTexture(earthBumpTexPath);
-	m_TestGO->loadHeightMapTexture(earthHeightTexPath);
-	m_TestGO->setPosition(vec3(-2.5f, 0.0f, 0.0f));
-	m_TestGO->setScale(vec3(1.0f, 1.0f, 1.0f));
-	*/
 
-	m_CameraPosition = vec3(0.0f, 0.0f, 25.0f);
+	m_CameraPosition = vec3(0.0f, 0.0f, 10.0f);
 
 	//lighting
 	m_Light = shared_ptr<Light>(new Light());

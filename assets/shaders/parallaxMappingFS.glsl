@@ -61,5 +61,6 @@ void main()
 	vec4 diffuseColour = diffuseTextureColour*directionLight.diffuseColour*diffuseTerm;
 	vec4 specularColour = specularTextureColour*directionLight.specularColour*specularTerm;
 	
+	//FragColor = vec4(1.0f,1.0f,1.0f,1.0f);
 	FragColor = ambientColour + diffuseColour + specularColour;
 }

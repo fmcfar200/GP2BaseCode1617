@@ -24,7 +24,7 @@ void main()
 	vec3 vertexTangentModel = normalize(Model*vec4(vertexTangents,0.0f)).xyz;
 	vec3 vertexBinormalModel = normalize(Model*vec4(vertexBinormals,0.0f)).xyz;
 	
-	mat3 tangentMatrix = mat3((vertexNormalModel),(vertexTangentModel),(vertexBinormalModel));
+	mat3 tangentMatrix = mat3(vertexNormalModel,vertexTangentModel,vertexBinormalModel);
 	
 	
 	vec3 worldPos = (Model*vec4(vertexPosition, 1.0)).xyz;
